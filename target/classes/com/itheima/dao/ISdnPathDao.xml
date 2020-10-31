@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.dao.ISdnPathDao">
+    <select id="findPathByIp" parameterType="String" resultType="com.itheima.domain.Path">
+        select * from path where ipAddr=#{userip};
+    </select>
+
+    <select id="deletePath" parameterType="String" resultType="com.itheima.domain.Path">
+        delete from path where ipAddr=#{nw_src} and ipAddrDST=#{nw_dst} and path=#{path};
+    </select>
+
+</mapper>

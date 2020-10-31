@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.dao.IManagerDao">
+    <select id="findByName" parameterType="String" resultType="Manager">
+     select id from manager where managerName=#{managerName}
+    </select>
+    <resultMap id="queryManagerInfo" type="com.itheima.domain.Manager">
+        <id property="id" column="id" ></id>
+        <result property="managerName" column="managerName"/>
+        <result property="managerPassword" column="managerPassword"/>
+        <result property="managerStatus" column="managerStatus"/>
+        <collection property="role" ofType="com.itheima.domain.Role">
+            <id property="id" column="rid"/>
+            <result property="roleName" column="rname"/>
+        </collection>
+    </resultMap>
+    <select id="findAllManagers" resultType="Manager">
+        select * from manager
+    </select>
+
+    <select id="findManagerInfo" parameterType="String" resultMap="queryManagerInfo">
+        select m.*,r.id rid,r.roleName rname from manager m join role r on m.roleid=r.id
+        where m.id=#{id}
+    </select>
+
+    <insert id="saveManager" parameterType="Manager">
+        insert into manager(managerName,managerPassword,managerStatus,roleid) values(#{managerName},#{managerPassword},#{managerStatus},#{roleid})
+    </insert>
+    <select id="loginProcess" parameterType="String" resultMap="queryManagerInfo">
+        select m.*,r.id rid,r.roleName rname from manager m join role r on m.roleid=r.id
+        where m.managerName=#{mname}
+    </select>
+    <!--<insert id="saveManager_role"  parameterType="String">-->
+        <!--insert into manager_role(mid,roleid) values(${mid},${roleid})-->
+    <!--</insert>-->
+    <delete id="deleteManager" parameterType="String">
+        delete from manager where id=${id1}
+    </delete>
+</mapper>
