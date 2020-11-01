@@ -23,7 +23,7 @@ import java.util.List;
 @RequestMapping("/manager")
 public class MannagerController {
     public static void testGit(){
-        System.out.println("hello git!");
+        System.out.println("hello git！");
     }
     @Autowired
     IManagerService iManagerService;
