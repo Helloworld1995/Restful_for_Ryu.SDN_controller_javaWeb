@@ -1,0 +1,2 @@
+这个SDN系统是javaWeb端的操作，我们完成了一个javaweb通过Ryu控制器的restful下发流表的方式控制Ryu控制器的系统。
+同时，这个系统还包括了终端用户的管理，本系统基于Spring框架管理bean,SpringMVC作为前端控制器，Mybatis作为作为持久层框架。
